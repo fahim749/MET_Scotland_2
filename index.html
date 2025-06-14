@@ -16,13 +16,14 @@
         body {
             background: linear-gradient(135deg, #1a2a6c, #0065bd, #1a2a6c);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
             color: #fff;
             position: relative;
             overflow: auto;
+            transition: background 0.5s ease;
+        }
+
+        body.resources-active {
+            background: linear-gradient(135deg, #0d1a4a, #004a8d, #0d1a4a);
         }
 
         .scottish-pattern {
@@ -42,8 +43,16 @@
         .container {
             max-width: 1200px;
             width: 100%;
-            z-index: 1;
+            margin: 0 auto;
             padding: 20px;
+            z-index: 1;
+        }
+
+        /* Landing Page Styles */
+        #landingPage {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .portal-card {
@@ -53,6 +62,7 @@
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
@@ -125,7 +135,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            min-height: 300px;
+            flex-grow: 1;
         }
 
         .welcome-text {
@@ -356,11 +366,156 @@
             animation: float 4s ease-in-out infinite;
         }
         
-        /* Fix for button visibility */
         .button-container {
             position: relative;
             z-index: 20;
             margin: 30px 0;
+        }
+
+        /* Resource Page Styles */
+        #resourcePage {
+            display: none;
+            min-height: 100vh;
+            padding-top: 20px;
+        }
+
+        .resource-header {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .resource-title {
+            font-size: 3.5rem;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .resource-subtitle {
+            font-size: 1.3rem;
+            color: #e0f0ff;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .tabs-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .tabs {
+            display: flex;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab {
+            padding: 18px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #bbb;
+            background: rgba(0, 0, 0, 0.2);
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab:hover {
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+        }
+
+        .tab.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffd700;
+            border-bottom: 3px solid #ffd700;
+        }
+
+        .tab-content {
+            padding: 30px;
+            min-height: 600px;
+        }
+
+        .resource-content {
+            display: none;
+        }
+
+        .resource-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .resource-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .resource-heading i {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-right: 15px;
+        }
+
+        .resource-heading h3 {
+            font-size: 2rem;
+            color: #ffd700;
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
@@ -377,7 +532,7 @@
                 font-size: 2rem;
             }
             
-            .portal-title {
+            .portal-title, .resource-title {
                 font-size: 2rem;
             }
             
@@ -394,78 +549,155 @@
                 width: 100%;
                 max-width: 350px;
             }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .iframe-container {
+                height: 400px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="scottish-pattern"></div>
     
-    <div class="container">
-        <div class="portal-card">
-            <div class="portal-header">
-                <div class="logo-container">
-                    <div class="met-logo floating">
-                        <div class="saltire"></div>
-                        <div class="met-text">MET</div>
+    <!-- Landing Page -->
+    <div id="landingPage">
+        <div class="container">
+            <div class="portal-card">
+                <div class="portal-header">
+                    <div class="logo-container">
+                        <div class="met-logo floating">
+                            <div class="saltire"></div>
+                            <div class="met-text">MET</div>
+                        </div>
                     </div>
-                </div>
-                <h1 class="portal-title">Mathematics Educators Training</h1>
-                <p class="portal-subtitle">Scotland's Premier Program for Excellence in Mathematics Education</p>
-            </div>
-            
-            <div class="portal-content">
-                <p class="welcome-text">
-                    Welcome to Scotland's leading Mathematics Educators Training program. 
-                    Join our community of passionate educators transforming mathematics 
-                    education across Scotland and beyond.
-                </p>
-                
-                <div class="button-container">
-                    <button id="enterBtn" class="enter-button">
-                        <i class="fas fa-door-open"></i> Enter the World of Maths
-                    </button>
+                    <h1 class="portal-title">Mathematics Educators Training</h1>
+                    <p class="portal-subtitle">Scotland's Premier Program for Excellence in Mathematics Education</p>
                 </div>
                 
-                <div class="features">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3 class="feature-title">Expert-Led Training</h3>
-                        <p class="feature-desc">
-                            Learn from Scotland's top mathematics educators and researchers.
-                        </p>
+                <div class="portal-content">
+                    <p class="welcome-text">
+                        Welcome to Scotland's leading Mathematics Educators Training program. 
+                        Join our community of passionate educators transforming mathematics 
+                        education across Scotland and beyond.
+                    </p>
+                    
+                    <div class="button-container">
+                        <button id="enterBtn" class="enter-button">
+                            <i class="fas fa-door-open"></i> Enter the World of Maths
+                        </button>
                     </div>
                     
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-hands-helping"></i>
+                    <div class="features">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="feature-title">Expert-Led Training</h3>
+                            <p class="feature-desc">
+                                Learn from Scotland's top mathematics educators and researchers.
+                            </p>
                         </div>
-                        <h3 class="feature-title">Collaborative Community</h3>
-                        <p class="feature-desc">
-                            Join a network of passionate educators sharing best practices.
-                        </p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-book-open"></i>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h3 class="feature-title">Collaborative Community</h3>
+                            <p class="feature-desc">
+                                Join a network of passionate educators sharing best practices.
+                            </p>
                         </div>
-                        <h3 class="feature-title">Rich Resources</h3>
-                        <p class="feature-desc">
-                            Access exclusive teaching materials and research-backed content.
-                        </p>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h3 class="feature-title">Rich Resources</h3>
+                            <p class="feature-desc">
+                                Access exclusive teaching materials and research-backed content.
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="footer">
-                <p>© 2023 Mathematics Educators Training | University of Strathclyde | Scotland</p>
-                <p>Excellence in Mathematics Education Since 1987</p>
+                
+                <div class="footer">
+                    <p>© 2023 Mathematics Educators Training | University of Strathclyde | Scotland</p>
+                    <p>Excellence in Mathematics Education Since 1987</p>
+                </div>
             </div>
         </div>
     </div>
     
+    <!-- Resource Page -->
+    <div id="resourcePage">
+        <button id="backButton" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </button>
+        
+        <div class="resource-header">
+            <h1 class="resource-title">Maths for All</h1>
+            <p class="resource-subtitle">Access premium mathematics resources for educators</p>
+        </div>
+        
+        <div class="container">
+            <div class="tabs-container">
+                <div class="tabs">
+                    <div class="tab active" data-tab="resources">Resources</div>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="resourcesTab" class="tabs">
+                        <div class="tab active" data-tab="videos">Videos</div>
+                        <div class="tab" data-tab="pdfs">PDFs</div>
+                        <div class="tab" data-tab="docs">Documents</div>
+                    </div>
+                    
+                    <div class="resource-content active" id="videos">
+                        <div class="resource-heading">
+                            <i class="fas fa-video"></i>
+                            <h3>Mathematics Video Tutorials</h3>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://drive.google.com/embeddedfolderview?id=1zxZcjLBR06nlzrBpBshEGGFGKC6CSgCg#grid" 
+                                    title="Mathematics Videos"></iframe>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-content" id="pdfs">
+                        <div class="resource-heading">
+                            <i class="fas fa-file-pdf"></i>
+                            <h3>Mathematics PDF Resources</h3>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://drive.google.com/embeddedfolderview?id=1Uv5fd6NJC7Qn_R7mN4ynXO6yeqIAxWSK#grid" 
+                                    title="Mathematics PDFs"></iframe>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-content" id="docs">
+                        <div class="resource-heading">
+                            <i class="fas fa-file-alt"></i>
+                            <h3>Mathematics Documents</h3>
+                        </div>
+                        <div class="iframe-container">
+                            <iframe src="https://drive.google.com/embeddedfolderview?id=1rlUeDBG8TCH2H-6I2ScqMdHX3Dh1eHRN#grid" 
+                                    title="Mathematics Documents"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 Mathematics Educators Training | Authorized Access Only</p>
+        </div>
+    </div>
+    
+    <!-- Password Modal -->
     <div id="passwordModal" class="password-modal">
         <div class="password-box">
             <h2 class="password-title">
@@ -494,9 +726,16 @@
             const submitBtn = document.getElementById('submitPassword');
             const passwordInput = document.getElementById('password');
             const message = document.getElementById('message');
+            const landingPage = document.getElementById('landingPage');
+            const resourcePage = document.getElementById('resourcePage');
+            const backButton = document.getElementById('backButton');
             
             // Correct password
             const correctPassword = "MET25";
+            
+            // Tab elements
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.resource-content');
             
             // Show password modal when enter button is clicked
             enterBtn.addEventListener('click', function() {
@@ -507,11 +746,12 @@
             // Handle password submission
             submitBtn.addEventListener('click', function() {
                 if (passwordInput.value === correctPassword) {
-                    // Redirect to the resource page (in a real scenario)
+                    // Hide modal and landing page, show resource page
+                    passwordModal.classList.remove('active');
+                    landingPage.style.display = 'none';
+                    resourcePage.style.display = 'block';
+                    document.body.classList.add('resources-active');
                     message.style.display = 'none';
-                    alert("Access granted! Redirecting to the training portal...");
-                    // In a real implementation, you would redirect to the main portal
-                    // window.location.href = "main-portal.html";
                 } else {
                     message.style.display = 'block';
                     passwordInput.value = '';
@@ -539,6 +779,32 @@
                     message.style.display = 'none';
                     passwordInput.value = '';
                 }
+            });
+            
+            // Back button functionality
+            backButton.addEventListener('click', function() {
+                resourcePage.style.display = 'none';
+                landingPage.style.display = 'block';
+                document.body.classList.remove('resources-active');
+            });
+            
+            // Tab switching functionality
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    
+                    // Update tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update content
+                    contents.forEach(c => {
+                        c.classList.remove('active');
+                        if (c.id === tabName) {
+                            c.classList.add('active');
+                        }
+                    });
+                });
             });
         });
         

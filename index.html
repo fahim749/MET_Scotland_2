@@ -3,150 +3,546 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maths for all</title>
+    <title>Mathematics Educators Training</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #1a2a6c, #0065bd, #1a2a6c);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: #2c3e50;
-            color: white;
-            border-radius: 8px;
-        }
-
-        .dropdown {
+            color: #fff;
             position: relative;
-            display: inline-block;
-            margin-bottom: 30px;
+            overflow: hidden;
         }
 
-        .dropbtn {
-            background-color: #3498db;
-            color: white;
-            padding: 16px;
-            font-size: 18px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            min-width: 200px;
-            transition: background-color 0.3s;
-        }
-
-        .dropbtn:hover {
-            background-color: #2980b9;
-        }
-
-        .dropdown-content {
-            display: none;
+        .scottish-pattern {
             position: absolute;
-            background-color: #f9f9f9;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            border-radius: 4px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 79%, rgba(255,255,255,0.1) 80%, transparent 81%),
+                linear-gradient(transparent 79%, rgba(255,255,255,0.1) 80%, transparent 81%);
+            background-size: 100px 100px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
             z-index: 1;
         }
 
-        .dropdown-content a {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s;
+        .portal-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            min-height: 80vh;
         }
 
-        .dropdown-content a:hover {
-            background-color: #e0e0e0;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .content-section {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-top: 20px;
-            min-height: 70vh;
-        }
-
-        iframe {
-            width: 100%;
-            height: 70vh;
-            border: none;
-            border-radius: 4px;
-            background-color: #fafafa;
-        }
-
-        .instructions {
+        .portal-header {
+            background: linear-gradient(90deg, #1a2a6c, #0065bd);
+            padding: 30px 40px;
             text-align: center;
-            padding: 20px;
-            color: #7f8c8d;
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .met-logo {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .saltire {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 47%, #0065bd 48%, #0065bd 52%, transparent 53%),
+                linear-gradient(-45deg, transparent 47%, #0065bd 48%, #0065bd 52%, transparent 53%);
+        }
+
+        .met-text {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 2;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .portal-title {
+            font-size: 2.8rem;
+            margin-top: 15px;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .portal-subtitle {
+            font-size: 1.3rem;
+            margin-top: 10px;
+            color: #e0f0ff;
+            max-width: 700px;
+            margin: 15px auto 0;
+        }
+
+        .portal-content {
+            padding: 50px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .welcome-text {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            line-height: 1.6;
+            color: #e0f0ff;
+        }
+
+        .enter-button {
+            background: linear-gradient(45deg, #ffd700, #ffb400);
+            color: #1a2a6c;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.6rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .enter-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .enter-button:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .enter-button::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 30px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: rotate(30deg);
+            transition: all 0.6s;
+        }
+
+        .enter-button:hover::after {
+            left: 120%;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 60px;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            width: 280px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .feature-desc {
+            font-size: 1.1rem;
+            color: #cce0ff;
+            line-height: 1.6;
+        }
+
+        .password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .password-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .password-box {
+            background: linear-gradient(135deg, #1a2a6c, #0065bd);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.4s ease;
+        }
+
+        .password-modal.active .password-box {
+            transform: scale(1);
+        }
+
+        .password-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #ffd700;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #ffd700;
+            font-size: 1.1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #ffd700;
+            background: rgba(0, 0, 0, 0.4);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ffd700, #ffb400);
+            color: #1a2a6c;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .error {
+            background: rgba(178, 31, 31, 0.7);
+            display: block;
+        }
+
+        .password-hint {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #aaa;
             font-style: italic;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #a0c8ff;
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .portal-header {
+                padding: 25px 20px;
+            }
+            
+            .met-logo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .met-text {
+                font-size: 2rem;
+            }
+            
+            .portal-title {
+                font-size: 2rem;
+            }
+            
+            .welcome-text {
+                font-size: 1.5rem;
+            }
+            
+            .enter-button {
+                padding: 16px 40px;
+                font-size: 1.4rem;
+            }
+            
+            .feature-card {
+                width: 100%;
+                max-width: 350px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Maths for all</h1>
-    </header>
-
-    <div class="dropdown">
-        <button class="dropbtn">Resources</button>
-        <div class="dropdown-content">
-            <a href="#" onclick="showContent('videos')">Videos</a>
-            <a href="#" onclick="showContent('pdfs')">PDFs</a>
-            <a href="#" onclick="showContent('docs')">Docs</a>
-        </div>
-    </div>
-
-    <div class="content-section" id="content">
-        <div class="instructions">
-            <p>Select a resource type from the dropdown menu above</p>
-        </div>
-    </div>
-
-    <script>
-        const contentMap = {
-            videos: {
-                id: '1zxZcjLBR06nlzrBpBshEGGFGKC6CSgCg',
-                name: 'Videos'
-            },
-            pdfs: {
-                id: '1Uv5fd6NJC7Qn_R7mN4ynXO6yeqIAxWSK',
-                name: 'PDFs'
-            },
-            docs: {
-                id: '1rlUeDBG8TCH2H-6I2ScqMdHX3Dh1eHRN',
-                name: 'Documents'
-            }
-        };
-
-        function showContent(type) {
-            const contentDiv = document.getElementById('content');
-            const resource = contentMap[type];
+    <div class="scottish-pattern"></div>
+    
+    <div class="container">
+        <div class="portal-card">
+            <div class="portal-header">
+                <div class="logo-container">
+                    <div class="met-logo floating">
+                        <div class="saltire"></div>
+                        <div class="met-text">MET</div>
+                    </div>
+                </div>
+                <h1 class="portal-title">Mathematics Educators Training</h1>
+                <p class="portal-subtitle">Scotland's Premier Program for Excellence in Mathematics Education</p>
+            </div>
             
-            contentDiv.innerHTML = `
-                <h2>${resource.name} Resources</h2>
-                <iframe src="https://drive.google.com/embeddedfolderview?id=${resource.id}#grid" 
-                        title="${resource.name}"></iframe>
-                <p>Cannot view content? <a href="https://drive.google.com/drive/folders/${resource.id}" 
-                   target="_blank">Open directly in Google Drive</a></p>
-            `;
-        }
+            <div class="portal-content">
+                <p class="welcome-text">
+                    Welcome to Scotland's leading Mathematics Educators Training program. 
+                    Join our community of passionate educators transforming mathematics 
+                    education across Scotland and beyond.
+                </p>
+                
+                <button id="enterBtn" class="enter-button">
+                    <i class="fas fa-door-open"></i> Enter the World of Maths
+                </button>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="feature-title">Expert-Led Training</h3>
+                        <p class="feature-desc">
+                            Learn from Scotland's top mathematics educators and researchers.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="feature-title">Collaborative Community</h3>
+                        <p class="feature-desc">
+                            Join a network of passionate educators sharing best practices.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="feature-title">Rich Resources</h3>
+                        <p class="feature-desc">
+                            Access exclusive teaching materials and research-backed content.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>© 2023 Mathematics Educators Training | University of Strathclyde | Scotland</p>
+                <p>Excellence in Mathematics Education Since 1987</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="passwordModal" class="password-modal">
+        <div class="password-box">
+            <h2 class="password-title">
+                <i class="fas fa-lock"></i> Secure Access
+            </h2>
+            <div class="input-group">
+                <label for="password">
+                    <i class="fas fa-key"></i> Enter Access Password
+                </label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button id="submitPassword" class="submit-btn">Access Training Portal</button>
+            <div id="message" class="message error">
+                <i class="fas fa-exclamation-circle"></i> Incorrect password. Please try again.
+            </div>
+            <div class="password-hint">
+                Hint: The password is "METScotland"
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const enterBtn = document.getElementById('enterBtn');
+            const passwordModal = document.getElementById('passwordModal');
+            const submitBtn = document.getElementById('submitPassword');
+            const passwordInput = document.getElementById('password');
+            const message = document.getElementById('message');
+            
+            // Correct password
+            const correctPassword = "METScotland";
+            
+            // Show password modal when enter button is clicked
+            enterBtn.addEventListener('click', function() {
+                passwordModal.classList.add('active');
+                passwordInput.focus();
+            });
+            
+            // Handle password submission
+            submitBtn.addEventListener('click', function() {
+                if (passwordInput.value === correctPassword) {
+                    // Redirect to the resource page (in a real scenario)
+                    message.style.display = 'none';
+                    alert("Access granted! Redirecting to the training portal...");
+                    // In a real implementation, you would redirect to the main portal
+                    // window.location.href = "main-portal.html";
+                } else {
+                    message.style.display = 'block';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                    
+                    // Add animation for error
+                    message.style.animation = 'none';
+                    setTimeout(() => {
+                        message.style.animation = 'shake 0.5s';
+                    }, 10);
+                }
+            });
+            
+            // Allow Enter key to submit password
+            passwordInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    submitBtn.click();
+                }
+            });
+            
+            // Close modal when clicking outside
+            passwordModal.addEventListener('click', function(e) {
+                if (e.target === passwordModal) {
+                    passwordModal.classList.remove('active');
+                    message.style.display = 'none';
+                    passwordInput.value = '';
+                }
+            });
+        });
+        
+        // Add shake animation for error message
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% {transform: translateX(0);}
+                10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
+                20%, 40%, 60%, 80% {transform: translateX(10px);}
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>

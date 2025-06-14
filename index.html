@@ -22,7 +22,7 @@
             padding: 20px;
             color: #fff;
             position: relative;
-            overflow: hidden;
+            overflow: auto;
         }
 
         .scottish-pattern {
@@ -43,6 +43,7 @@
             max-width: 1200px;
             width: 100%;
             z-index: 1;
+            padding: 20px;
         }
 
         .portal-card {
@@ -54,12 +55,11 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
             flex-direction: column;
-            min-height: 80vh;
         }
 
         .portal-header {
             background: linear-gradient(90deg, #1a2a6c, #0065bd);
-            padding: 30px 40px;
+            padding: 40px 20px;
             text-align: center;
             position: relative;
         }
@@ -96,11 +96,11 @@
         .met-text {
             font-size: 2.8rem;
             font-weight: 800;
-            color: white;
+            color: #1a2a6c;
             text-transform: uppercase;
             letter-spacing: 2px;
             z-index: 2;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .portal-title {
@@ -125,7 +125,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            flex-grow: 1;
+            min-height: 300px;
         }
 
         .welcome-text {
@@ -150,10 +150,10 @@
             position: relative;
             overflow: hidden;
             letter-spacing: 1px;
-            margin-top: 20px;
             display: flex;
             align-items: center;
             gap: 15px;
+            z-index: 10;
         }
 
         .enter-button:hover {
@@ -355,6 +355,13 @@
         .floating {
             animation: float 4s ease-in-out infinite;
         }
+        
+        /* Fix for button visibility */
+        .button-container {
+            position: relative;
+            z-index: 20;
+            margin: 30px 0;
+        }
 
         @media (max-width: 768px) {
             .portal-header {
@@ -413,9 +420,11 @@
                     education across Scotland and beyond.
                 </p>
                 
-                <button id="enterBtn" class="enter-button">
-                    <i class="fas fa-door-open"></i> Enter the World of Maths
-                </button>
+                <div class="button-container">
+                    <button id="enterBtn" class="enter-button">
+                        <i class="fas fa-door-open"></i> Enter the World of Maths
+                    </button>
+                </div>
                 
                 <div class="features">
                     <div class="feature-card">
@@ -473,7 +482,7 @@
                 <i class="fas fa-exclamation-circle"></i> Incorrect password. Please try again.
             </div>
             <div class="password-hint">
-                Hint: The password is "METScotland"
+                Hint: The password is "MET25"
             </div>
         </div>
     </div>
@@ -487,7 +496,7 @@
             const message = document.getElementById('message');
             
             // Correct password
-            const correctPassword = "METScotland";
+            const correctPassword = "MET25";
             
             // Show password modal when enter button is clicked
             enterBtn.addEventListener('click', function() {
@@ -540,6 +549,10 @@
                 0%, 100% {transform: translateX(0);}
                 10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
                 20%, 40%, 60%, 80% {transform: translateX(10px);}
+            }
+            
+            #message {
+                animation-duration: 0.5s;
             }
         `;
         document.head.appendChild(style);

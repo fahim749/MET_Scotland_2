@@ -349,6 +349,16 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+        }
+
+        .copyright {
+            font-weight: 600;
+            color: #ffd700;
+        }
+
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
@@ -511,6 +521,31 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Signature animation */
+        .signature {
+            display: inline-block;
+            position: relative;
+            font-weight: 600;
+        }
+        
+        .signature::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, #ffb400);
+            animation: signatureLine 2s forwards;
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes signatureLine {
+            to {
+                width: 100%;
+            }
+        }
+
         @media (max-width: 768px) {
             .portal-header {
                 padding: 25px 20px;
@@ -622,8 +657,8 @@
                 </div>
                 
                 <div class="footer">
-                    <p>© 2023 Mathematics Educators Training | University of Strathclyde | Scotland</p>
-                    <p>Excellence in Mathematics Education Since 1987</p>
+                    <p class="copyright">© 2025 Mathematics Educators Training | <span class="signature">Dr Fahim Ahmed</span></p>
+                    <p>Educationist | Learner</p>
                 </div>
             </div>
         </div>
@@ -690,7 +725,8 @@
         </div>
         
         <div class="footer">
-            <p>© 2023 Mathematics Educators Training | Authorized Access Only</p>
+            <p class="copyright">© 2025 Mathematics Educators Training | <span class="signature">Dr Fahim Ahmed</span></p>
+            <p>Educationist | Learner</p>
         </div>
     </div>
     

@@ -340,13 +340,6 @@
             display: block;
         }
 
-        .password-hint {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #aaa;
-            font-style: italic;
-        }
-
         .footer {
             text-align: center;
             padding: 25px;
@@ -376,13 +369,13 @@
         #resourcePage {
             display: none;
             min-height: 100vh;
-            padding-top: 20px;
         }
 
         .resource-header {
             text-align: center;
-            padding: 20px;
-            margin-bottom: 30px;
+            padding: 40px 20px 20px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #1a2a6c, #0065bd);
         }
 
         .resource-title {
@@ -407,7 +400,7 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            margin: 0 auto;
+            margin: 30px auto;
             max-width: 1200px;
         }
 
@@ -556,6 +549,10 @@
             
             .iframe-container {
                 height: 400px;
+            }
+            
+            .resource-header {
+                padding-top: 70px;
             }
         }
     </style>
@@ -713,9 +710,6 @@
             <div id="message" class="message error">
                 <i class="fas fa-exclamation-circle"></i> Incorrect password. Please try again.
             </div>
-            <div class="password-hint">
-                Hint: The password is "MET25"
-            </div>
         </div>
     </div>
     
@@ -752,6 +746,9 @@
                     resourcePage.style.display = 'block';
                     document.body.classList.add('resources-active');
                     message.style.display = 'none';
+                    
+                    // Scroll to the top of the resource page
+                    window.scrollTo(0, 0);
                 } else {
                     message.style.display = 'block';
                     passwordInput.value = '';
@@ -786,6 +783,7 @@
                 resourcePage.style.display = 'none';
                 landingPage.style.display = 'block';
                 document.body.classList.remove('resources-active');
+                window.scrollTo(0, 0);
             });
             
             // Tab switching functionality
